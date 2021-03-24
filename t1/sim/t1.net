@@ -1,0 +1,48 @@
+CIRCUIT_1
+
+R1 n2 n1 1.03246207994k
+R2 n3 n2 2.00407938458k
+R3 n2 n5 3.09992724929k
+R4 GND n5 4.11959743399k
+R5 n5 n4 3.13664760831k
+R6 n0 n6 2.00274902802k
+R7 n6 n7 1.04584791445k
+V0 GND n0 dc 0
+Va n1 GND dc 5.21005945917
+Id n7 n4 dc 1.04562966374m
+Hc n5 n7 V0 8.21039470748k
+Gb n4 n3 n2 n5 7.02164593403m
+
+.control
+op 
+echo "********************************************"
+echo  "Resistance - Currents"
+echo "********************************************"
+echo  "op_amp_TAB"
+print @R1[i]
+print @R2[i]
+print @R3[i]
+print @R4[i]
+print @R5[i]
+print @R6[i]
+print @R7[i]
+echo  "op_amp_END"
+
+echo "********************************************"
+echo  "Voltages"
+echo "********************************************"
+echo  "op_volt_TAB"
+print n0
+print n1
+print n2
+print n3
+print n4
+print n5
+print n6
+print n7
+echo  "op_volt_END"
+
+
+quit
+.endc
+.end

@@ -1,0 +1,116 @@
+\section{Theoretical Analysis}
+\label{sec:analysis}
+
+In this section, the circuit shown in Figure~\ref{fig:circuit} is analysed
+theoretically, in terms of currents and nodes voltages. Values given by $Octave$ are compiled in \ref{tab:SolveNos_tab} for Nodes Method and in ~\ref{tab:SolveMalhas_tab} for Mesh Method.
+
+\subsection{Nodes Method}
+
+
+The Nodes Method consists on the analysis of the nodes that connect components in this circuit. Besides the previous said, it's not possible to apply the method to nodes were voltage sources are connected ($V_a$ and $V_c$). To overcome this problem, additional equations for nodes related by voltage sources were used, combined with the \textit{Supernode Method} (used in nodes 5 and 7) that consists in combining two nodes. 
+
+The circuit used to write the following equations is presented in Figure ~\ref{fig:nodes}.
+
+
+
+\begin{equation}
+  (V_2 - V_1) G_1 + (V_2- V_5) G_3 + (V_2 - V_3) G_2 = 0
+  \label{eq_1}
+\end{equation}
+
+\begin{equation}
+  -(V_4 -V_5) G_5 - K_b (V_2 - V_5) + I_d = 0
+  \label{eq_2}
+\end{equation}
+
+\begin{equation}
+  (V_3 -V_2) G_2 - K_b (V_2 - V_5) = 0
+  \label{eq_3}
+\end{equation}
+
+\begin{equation}
+  (V_6 -V_7) G_7 + V_6 . G_6 = 0
+  \label{eq_4}
+\end{equation}
+
+\begin{equation}
+  V_1 = V_a
+  \label{eq_5}
+\end{equation}
+
+\begin{equation}
+  V_5 - V_7 + K_c . V_6 . G_6 = 0
+  \label{eq_6}
+\end{equation}
+
+\begin{equation}
+  (V_4 - V_5) G_5 - (V_5 - V_2) G_3 - V_5 . G_4 - (V_7 - V_6) G_7 = I_d
+  \label{eq_7}
+\end{equation}
+
+
+\begin{figure}[ht] \centering
+\includegraphics[width=0.5\linewidth]{nodes.pdf}
+\caption{Nodes at the circuit.}
+\label{fig:nodes}
+\end{figure}
+
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [V]} \\ \hline
+    \input{../mat2/SolveNos_tab}
+  \end{tabular}
+  \caption{Voltage values at the nodes}
+  \label{tab:SolveNos_tab}
+\end{table}
+
+\subsection{Mesh Method}
+
+The Mesh Method consists on the analysis of the meshes of a circuit. A mesh is a loop that contains no other loops. Knowing the currents that flow through the meshes, using Ohm's Law, it's possible to calculate any node voltages or branch currents.
+
+In the analysis of this circuit, four fictitious currents ($J_a$, $J_b$, $J_c$ and $J_d$) were represented in order to write four independent equations, one for each elementary mesh.
+
+The circuit used to write the following equations is presented in Figure ~\ref{fig:mesh}.
+
+\begin{equation}
+  J_a . R_1 + V_a + R_4 (J_a - J_c) + R_3 (J_a -J_b) = 0
+  \label{eq:i_a}
+\end{equation}
+
+\begin{equation}
+  J_b = K_b  R_3  (J_b - J_a)
+  \label{eq:i_b}
+\end{equation}
+
+\begin{equation}
+  J_c . R_7 - K_c . J_c + R_4 (J_c - J_a) + R_6 . J_c = 0
+  \label{eq:i_c}
+\end{equation}
+
+\begin{equation}
+  J_d = I_d
+  \label{eq:i_d}
+\end{equation}
+
+\begin{figure}[ht] \centering
+    \includegraphics[width=0.5\linewidth]{mesh.pdf}
+    \caption{Currents at the circuit.}
+    \label{fig:mesh}
+\end{figure}
+
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A]} \\ \hline
+    \input{../mat1/SolveMalhas_tab}
+  \end{tabular}
+  \caption{Fictitious Current values at the elementary meshes}
+  \label{tab:SolveMalhas_tab}
+\end{table}
+
+
+
+

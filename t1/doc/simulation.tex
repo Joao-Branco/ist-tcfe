@@ -1,0 +1,92 @@
+\section{Simulation Analysis}
+\label{sec:simulation}
+
+\subsection{Ngspice Analysis}
+
+Tables~\ref{tab:op_amp_tab} and ~\ref{tab:op_volt_tab} show the \textit{Ngspice} simulated results for the circuit
+under analysis,. 
+
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A]} \\ \hline
+    \input{../sim/op_amp_tab}
+  \end{tabular}
+  \caption{Current values at the resistors}
+  \label{tab:op_amp_tab}
+\end{table}
+
+\vspace{5mm}
+
+Note: Values mentioned as $@r_x$ in the Table
+~\ref{tab:op_amp_tab}, are used at the Figure ~\ref{fig:nodes} as $I_k$.
+
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [V]} \\ \hline
+    \input{../sim/op_volt_tab}
+  \end{tabular}
+  \caption{Voltage values at the nodes}
+  \label{tab:op_volt_tab}
+\end{table}
+
+\newpage
+
+\section{Results Analysis}
+\label{sec:resultsanalysis}
+
+In this section were written equations that can prove the convergence of the results collected with \textit{Ngspice} and \textit{Octave}, using the methods in study.
+
+\begin{equation}
+  I_1 = J_a = - 2.4476*10^{-4} A
+  \label{i1}
+\end{equation}
+
+
+\begin{equation}
+  I_2 = J_b = - 2.5654*10^{-4} A
+  \label{i2}
+\end{equation}
+
+
+\begin{equation}
+  I_3 = J_b - J_a = - 1.1786*10^{-5} A
+  \label{i3}
+\end{equation}
+
+
+\begin{equation}
+  I_4 = J_a - J_c = - 1.2122*10^{-3} A
+  \label{i4}
+\end{equation}
+
+
+\begin{equation}
+  I_5 = J_b - J_d = - 1.3021*10^{-3} A
+  \label{i5}
+\end{equation}
+
+
+\begin{equation}
+  I_7 = J_c = 9.6747*10^{-3} A
+  \label{i7}
+\end{equation}
+
+
+\begin{equation}
+  V_a = V_1 - V_0 = 5.2101 V
+  \label{va}
+\end{equation}
+
+
+\begin{equation}
+  V_c = K_c.I_c = V_5 - V_7 = 7.943 V
+  \label{vc}
+\end{equation}
+
+
+
+

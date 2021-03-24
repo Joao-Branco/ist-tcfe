@@ -1,0 +1,30 @@
+\section{Introduction}
+\label{sec:introduction}
+
+% state the learning objective 
+The objective of this laboratory assignment is to study a circuit containing
+dependent and independent voltage and current sources ($V_c$ and $V_a$, $I_b$ and $I_d$, respectively) connected to several resistors $R_K$.
+The circuit can be seen in Figure~\ref{fig:circuit}.
+
+In Section~\ref{sec:analysis}, a theoretical analysis of the circuit is
+presented using the tool \textit{Octave}. Also in this section is presented an explanation of the nodes and mesh methods. In Section~\ref{sec:simulation}, the circuit is analysed by
+simulation using \textit{Ngspice}. In Section ~\ref{sec:resultsanalysis} the results of the nodal and mesh methods are compared to the simulation results obtained in
+Section~\ref{sec:simulation}. The conclusions of this study are outlined in
+Section~\ref{sec:conclusion}.
+
+\begin{figure}[ht] \centering
+\includegraphics[width=0.5\linewidth]{circuit.pdf}
+\caption{Analysed circuit}
+\label{fig:circuit}
+\end{figure}
+
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V or $\Omega$ or S]} \\ \hline
+    \input{../doc/Res}
+  \end{tabular}
+  \caption{Values given in document datagen(python).}
+  \label{tab:Res}
+\end{table}
