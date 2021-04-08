@@ -1,0 +1,52 @@
+CIRCUIT_1
+
+R1 n1 n2 1.03246207994k
+R2 n3 n2 2.00407938458k
+R3 n2 n5 3.09992724929k
+R4 n5 GND 4.11959743399k
+R5 n5 n6 3.13664760831k
+R6 n0 n7 2.00274902802k
+R7 n7 n8 1.04584791445k
+C1 n6 n8 1.04562966374u 
+V0 GND n0 dc 0
+Vs n1 GND 0.0 ac 1.0 sin(0 1 1k 0 0 0)
+Hd n5 n8 V0 8.21039470748k
+Gb n6 n3 n2 n5 7.02164593403m
+
+
+.ic v(n6)=8.748008 v(n8)=0
+
+.op
+
+
+.end
+
+
+.control
+
+
+*makes plots in color
+set hcopypscolor=0
+set color0=white
+set color1=black
+set color2=red
+set color3=blue
+set color4=violet
+set color5=rgb:3/8/0
+set color6=rgb:4/0/0
+
+
+op 
+
+tran 1e-5 20e-3
+
+ac dec 10 0.1 1MEG
+
+hardcopy acm.ps db(v(n6)) v(n1)
+echo acm_FIG
+set units = degrees
+hardcopy acp.ps ph(n6)
+echo acp_FIG
+
+.endc
+.end
