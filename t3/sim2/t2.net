@@ -41,8 +41,8 @@ D23 21 GND Default
 
 
 
-*R1 2 GND 300k
-*C1 2 GND 150u
+R1 2 GND 300k
+C1 2 GND 150u
 R3 2 4 100k
 
 
@@ -70,6 +70,9 @@ tran 1e-5 240e-3
 
 plot   v(4) 
 
+meas tran ymax MAX v(4) from=10e-3 to=240e-3 
+meas tran ymin MIN v(4) from=10e-3 to=240e-3 
+meas tran yavg AVG v(4) from=10e-3 to=240e-3 
 ******************************************
 hardcopy voltageregulator.ps  v(4) 
 echo voltageregulator_FIG

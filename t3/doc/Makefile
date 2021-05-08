@@ -12,22 +12,17 @@ all: $(FILE).pdf
 	evince $< &
 
 $(FILE).pdf: $(wildcard *.tex) $(LODFIGS)
-	cp -f ../mat1/*.tex .
+	cp -f ../mat1/*.eps .
 	cp -f ../mat2/*.tex .
-	cp -f ../mat4/*.tex .
-	cp -f ../sim1/*.tex .
-	cp -f ../sim2/*.tex .
-	cp -f ../mat3/*.eps .
-	cp -f ../mat4/*.eps .
-	cp -f ../mat5/*.eps .
-	cp -f ../mat6/*.eps .
+	cp -f ../mat2/*.eps .
+	cp -f ../sim1/*.pdf .
+	cp -f ../sim2/*.pdf .
 	cp -f ../sim3/*.pdf .
-	cp -f ../sim4/*.pdf .
-	cp -f ../sim5/*.pdf .
-	
+	cp -f ../sim4/*.tex .	
 	pdflatex  $(FILE).tex
 	pdflatex  $(FILE).tex
 	pdflatex  $(FILE).tex
+
 	
 
 

@@ -1,237 +1,185 @@
+\newpage
 \section{Theoretical Analysis}
 \label{sec:analysis}
 
-In this section, the circuit shown in Figure~\ref{fig:circuit} is analysed
-theoretically, in terms nodes voltages. Values given by $Octave$ are compiled in table \ref{tab:oct1_tab} for Nodes Method.
+In this section, a suitable theoretical model to predict the output of the Envelope Detector and Voltage Regulator circuits was used.
+
+
+After obtaining in \textit{Octave} the required model for the Envelope Detector and Voltage Regulator, points 1 to 5 were repeated with the goal to compare the simulation with the theoretical model.
+
+\subsection{Envelope Detector}
+
+Initially it was needed to low the voltage, for that a transformer was used with n=0.73896. This can be observed in Figure \ref{fig:inputWave}.  
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.5\linewidth]{inputWave.eps}
+\caption{Transformer used in this circuit}
+\label{fig:inputWave}
+\end{figure}
+
+\newpage
+
+After defining the new voltage obtained in the transformer it was needed a Full wave rectifier. The Full wave rectifier has four diodes that lead the circuit to a 0.7 V voltage drop.
+
+Combining the Full wave rectifier with a resistance and a capacitor in parallel it was possible to have an Envelope Detector. 
+
+The voltage after the Envelope Detector its given by the following equations. 
+
+\begin{equation}
+    v_{0}= v_s ,  D_{on}
+\end{equation} 
+
+\begin{equation}
+    v_{0}= - Ri_C ,   D_{off}
+\end{equation} 
+
+
+In order to solve the previous equations it is needed the instant where the Diodes are on or off. To find these values the following equation was solved:
+
+\begin{equation}
+    i_R= - i_c 
+\end{equation}
+
+The final expression for $t_{off}$ is:
+
+\begin{equation}
+   t_{off}=\frac{1}{\omega } \arctan (-CR\omega ) + \frac{k}{2f} 
+\end{equation}
+
+k belong to natural numbers.
+
+The final expression for the voltage with $t_{off}$ is:
+
+\begin{equation}
+  v_0(t)=A\sin (\omega*t_{off})e^{-\frac{t-t_{off}}{RC}} 
+\end{equation}
+
+With $t_{on}$, the expression for the voltage is:
+
+\begin{equation}
+    v_{0}= v_s
+\end{equation}
+
+After computing these parameters the plot showed in Figure \ref{fig:venvlope}  was obtained.
+
+\begin{figure}[ht] \centering
+\includegraphics[width=0.7\linewidth]{venvlope.eps}
+\caption{Envelope Detector}
+\label{fig:venvlope}
+\end{figure}
+
+
+\subsection{Voltage Regulator}
+
+In this part an incremental analysis was made where the diode model is approximately to a resistor. The formula used is:
+
+\begin{equation}
+    i_d \approx v_d / r_d
+    \label{eq:id}
+\end{equation}
+
+Using this approximation (Equation \ref{eq:id}) is possible to plot a graph that represents the final output voltage. This plot is shown in Figure \ref{fig:Vregulator}.
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.6\linewidth]{Vregulator.eps}
+\caption{Voltage Regulator}
+\label{fig:Vregulator}
+\end{figure}
+
+Besides a theoretical value of the ripple were obtained. The following table (table \ref{tab:ripple_tab}) shows this value.
 
 \begin{table}[h]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Node} & {\bf Voltage [V]} \\ \hline
-    \input{oct1_tab.tex}
+    {\bf Values of y} & {\bf Voltage [V]} \\ \hline
+    \input{ripple_tab}
   \end{tabular}
-  \caption{Initial voltage values on the nodes}
-  \label{tab:oct1_tab}
+  \caption{Voltage values from theoretical analyses}
+  \label{tab:ripple_tab}
 \end{table}
-
-
-
-\subsection{Operating Point Analysis}
-
-The Nodes Method consists on the analysis of the nodes that connect components in this circuit. Besides the previous said, it's not possible to apply the method to nodes were voltage sources are connected ($V_a$ and $V_c$). To overcome this problem, additional equations for nodes related by voltage sources were used, combined with the \textit{Supernode Method} (used in nodes 5 and 8) that consists in combining two nodes. 
-
-The circuit used to write the following equations is presented in Figure \ref{fig:nodes}.
-
-
-
-\begin{equation}
-  (V_1 - V_2) G_1 - (V_2 - V_5) G_3 + (V_3 - V_2) G_2 = 0
-  \label{eq_1}
-\end{equation}
-
-\begin{equation}
-  (V_5 - V_6) G_5 - K_b (V_2 - V_5) = 0
-  \label{eq_2}
-\end{equation}
-
-\begin{equation}
-  - (V_3 - V_2) G_2 + K_b (V_2 - V_5) = 0
-  \label{eq_3}
-\end{equation}
-
-\begin{equation}
-  - (V_7 - V_8) G_7 - V_7 . G_6 = 0
-  \label{eq_4}
-\end{equation}
-
-\begin{equation}
-  V_1 = V_s
-  \label{eq_5}
-\end{equation}
-
-\begin{equation}
-  V_5 - V_8 + K_d . V_7 . G_6 = 0
-  \label{eq_6}
-\end{equation}
-
-\begin{equation}
-  - (V_5 - V_6) G_5 + (V_2 - V_5) G_3 - V_5 . G_4 + (V_7 - V_8) G_7 = 0
-  \label{eq_7}
-\end{equation}
-
-
-\begin{figure}[h] \centering
-\includegraphics[width=0.5\linewidth]{nodes.pdf}
-\caption{Current Direction}
-\label{fig:nodes}
-\end{figure}
-
 
 \newpage
 
+\section{Results Analysis}
+\label{sec:resultsanalysis}
 
-Additional equations for nodes related by voltage sources were used, combined with the \textit{Supernode Method} (used in nodes 5, 6 e 8) that consists in combining three nodes.
-
-The circuit used to write the following equations is presented in Figure \ref{fig:nodes}. In that circuit, the capacitor were replaced by a voltage source $V_x$ corresponding to the voltage difference at nodes 6 and 8.
-
-On this procedure, the capacitor was replaced by a voltage source. This procedure is necessary because $Req$ is needed to calculate the natural solution, and the only way  to do that is to use a voltage source instead of a capacitor.  
-
-The voltage at the nodes is shown in table \ref{tab:oct2_tab}, also the values of $I_x$, $Req$ and Tau are given.
+In the presented section, the mail goal is to compare side by side the results obtained in the simulation with \textit{Ngspice} and the theoretical analysis obtained with \textit{Octave}. Two comparisons will be made. One for the Envelope Detector and other for the Voltage Regulator circuit. 
 
 
-\begin{equation}
-  (V_1 - V_2) G_1 - (V_2 - V_5) G_3 + (V_3 - V_2) G_2 = 0
-  \label{eq_8}
-\end{equation}
+In Figure \ref{fig:point1} we can compare the results obtained for the Envelope Detector for both methods. 
 
-\begin{equation}
-  (V_6 - V_8) = V_x
-  \label{eq_9}
-\end{equation}
-
-\begin{equation}
-  - (V_3 - V_2) G_2 + K_b (V_2 - V_5) = 0
-  \label{eq_10}
-\end{equation}
-
-\begin{equation}
-  - (V_7 - V_8) G_7 - V_7 . G_6 = 0
-  \label{eq_11}
-\end{equation}
-
-\begin{equation}
-  V_1 = V_s
-  \label{eq_12}
-\end{equation}
-
-\begin{equation}
-  V_5 - V_8 + K_d . V_7 . G_6 = 0
-  \label{eq_13}
-\end{equation}
-
-\begin{equation}
-  (V_2 - V_5) G_3 - V_5 . G_4 + (V_7 - V_8) G_7 - Kb * (V_2 - V_5) = 0
-  \label{eq_14}
-\end{equation}
-
-
-\begin{table}[h]
+\begin{figure}[h]
+\centering
+  \begin{subfigure}[b]{0.4\textwidth}
   \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Node} & {\bf Voltage, Current and Resister [V, A, Ohm]} \\ \hline
-    \input{oct2_tab.tex}
-  \end{tabular}
-  \caption{Voltage values on the nodes}
-  \label{tab:oct2_tab}
-\end{table}
-
-\newpage
-\subsection{Transient Analysis}
-
-\subsubsection{Natural Solution}
-
-With the results obtained in the previous point, it was possible to determine the natural solution for $V_6n$. The graph for this solution is shown in figure \ref{fig:natural} and the equation for the same is:
-
-
-\begin{equation}
-  V_n(t) = V_x . e ^ \frac{-t}{R_eq * C}
-  \label{eq_15}
-\end{equation}
-
-
-\begin{figure}[h] \centering
-\includegraphics[width=0.5\linewidth]{natural.eps}
-\caption{Natural Response from 0 to 20 ms}
-\label{fig:natural}
-\end{figure}
-
-
-\subsubsection{Forced Solution}
-
-In order to calculate the forced solution for $V_6f$, we used the suggestion and ran the nodal analysis. We obtained a complex value for $V_6$ and real values for the other voltages. Using the complex value was possible to calculate the amplitude and phase used to compute the forced solution. Figure \ref{fig:forced} represents the forced solution and table \ref{tab:solveNos_tab} shows the complex amplitudes in the nodes. 
-
-\begin{table}[h]
+    \includegraphics[scale = 0.4]{venvlope.eps}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.4\textwidth}
   \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Node} & {\bf Voltage [V]} \\ \hline
-    \input{solveNos_tab.tex}
-  \end{tabular}
-  \caption{Complex amplitudes in the nodes}
-  \label{tab:solveNos_tab}
-\end{table}
-
-\begin{figure}[h] \centering
-\includegraphics[width=0.5\linewidth]{forced.eps}
-\caption{Forced Response from 0 to 20 ms}
-\label{fig:forced}
+    \includegraphics[scale = 0.3]{envelope.pdf}
+  \end{subfigure}
+  \caption{Envelope Detector}
+  \label{fig:point1}
 \end{figure}
 
-\begin{equation}
-    Gain = 0.56801 
-    \label{}
-\end{equation}
 
-\begin{equation}
-    Phase = - 2.9980 (rad)
-    \label{}
-\end{equation}
-
-\begin{equation}
-    V_6f = Gain \times sin (2 * \pi * 1000 * t + Phase)
-    \label{}
-\end{equation}
-
-
-\subsubsection{Comparison between $V_6$ and $V_s$ }
-
-In order to find the final total solution $V_6(t)$, natural and forced solutions were superimposed. The equations bellow show the the final total solution for $V_6(t)$, and $V_s(t)$ is given in the procedure description. The figure \ref{fig:all} represents both in the interval [-5;20] (ms).
-
-\begin{figure}[h] \centering
-\includegraphics[width=0.5\linewidth]{all.eps}
-\caption{Comparison between $V_6$ and $V_s$  from -5 to 20 ms}
-\label{fig:all}
-\end{figure}
-
-\begin{equation}
-    V_s (t) = V_s ,   t<0
-    \label{}
-\end{equation}
-
-\begin{equation}
-    V_s (t) = sin(2 * \pi * 100 * t) , t>=0
-    \label{}
-\end{equation}
-
-\begin{equation}
-    V_6 (t) = 5.7986,   t<0
-    \label{}
-\end{equation}
-
-\begin{equation}
-    V_6 (t) = V_x . e ^ \frac{-t}{R_eq * C} + Gain * sin(2 * \pi * 100 * t + Phase) , t>=0
-    \label{}
-\end{equation}
-
-
-
-\subsection{Frequency Analysis}
-
-The objective of this point is to study the frequency response of the nodes 6 and 8, and their difference. To accomplish this, magnitude and phase diagrams were used. Domain of equations obtains in previous points was changed, by an iterative method, in order to have the frequency response.
-In Figures \ref{fig:bodemag} and \ref{fig:bodepha} are represented magnitude and phase response, respectively.
-
-\begin{figure}[h] \centering
-\includegraphics[width=0.5\linewidth]{bodemag.eps}
-\caption{Magnitude Diagram between 0.1 and $10^6$ decades}
-\label{fig:bodemag}
-\end{figure}
-
-\begin{figure}[h] \centering
-\includegraphics[width=0.5\linewidth]{bodepha.eps}
-\caption{Phase Diagram between 0.1 and $10^6$ decades}
-\label{fig:bodepha}
-\end{figure}
+Analysing both images in Figure \ref{fig:point1} it is possible to observe that both the simulation and the theoretical analyses have similar values for the voltage. This value stabilises at 170V.
 
 \newpage
+
+Now a comparison between the theoretical values and the simulation for the voltage regulator is made. In the previous tables is possible to compare both the results.
+
+The difference between the values is expected, since in the theoretical analysis the ideal diode model was used and in the simulation the default model was used. 
+
+
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{|c|c|}
+ \hline    
+    {\bf Values of y} & {\bf Voltage [V]} \\ \hline
+    \input{op_MAXMIN_tab.tex}
+\end{tabular}
+\begin{tabular}{|c|c|}
+\hline    
+    {\bf Values of y} & {\bf Voltage [V]} \\ \hline
+    \input{ripple_tab}
+\end{tabular}
+\caption{Comparison between theoretical and simulation values}
+\end{center}
+\end{table}
+
+
+
+The value found for the merit is calculated with the following expression:
+
+\begin{equation}
+  M= \frac{1}{cost * (ripple(v_0)+average(v_0)-12)+10^{-6})}
+  \label{eq:merit}
+\end{equation}
+
+Where the cost is calculated with a $R_1$ = 300k$\Omega$, $R_3$ = 100k$ \Omega$, C = 150 $\mu$F and 22 Diodes.
+Thus, the cost give us 552.2 MU.
+
+Using equation \ref{eq:merit}, the merit is 1.708.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

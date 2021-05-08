@@ -69,10 +69,10 @@ set color6=rgb:4/0/0
 tran 1e-5 240e-3
 * tran 1e-5 10e-3
 
-plot   v(4)-v(24) 
+plot   v(4)-v(24) xlimit 40e-3 200e-3 ylimit -1.3e-3 1.3e-3 
 
 ******************************************
-hardcopy ripple.ps  v(4)-v(24)
+hardcopy ripple.ps  v(4)-v(24) xlimit 40e-3 200e-3 ylimit -1.3e-3 1.3e-3 
 echo ripple_FIG
 * hardcopy vospice400.ps  v(4)
 

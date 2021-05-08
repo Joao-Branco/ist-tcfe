@@ -2,29 +2,16 @@
 \label{sec:introduction}
 
 % state the learning objective 
-The objective of this laboratory assignment is to study a circuit containing
-dependent and independent voltage sources and a dependent current source ($V_d$ and $V_s$, $I_b$ , respectively) connected to several resistors $R_K$ and a capacitor $C$
-The circuit can be seen in Figure~\ref{fig:circuit}.
+The objective of this laboratory assignment is to project an AC/DC converter circuit that receives an alternating current (AC) with 230V and 50Hz and through out a transformer, an envelope detector and a voltage regulator converts it to a direct current (DC) with 12V. 
 
-In Section~\ref{sec:analysis}, a theoretical analysis of the circuit is
-presented using the tool \textit{Octave}. In Section~\ref{sec:simulation}, the circuit is analysed by
-simulation using \textit{Ngspice}. In Section~\ref{sec:resultsanalysis} the results obtained in the theoretical analysis are compared to the simulation results obtained in
-Section~\ref{sec:simulation}. The conclusions of this study are outlined in
+In Section~\ref{sec:simulation}, the circuit is analysed by simulation using \textit{Ngspice}. In Section~\ref{sec:analysis}, a theoretical analysis of the converter circuit is presented using the tool \textit{Octave}. In Section~\ref{sec:resultsanalysis} the results obtained in the theoretical analysis are compared to the simulation results obtained in Section~\ref{sec:simulation}. The conclusions of this study are outlined in
 Section~\ref{sec:conclusion}.
 
+The following image shows the analysed circuit.
+
+%INSERIR FIGURA CERTA
 \begin{figure}[h] \centering
-\includegraphics[width=0.5\linewidth]{circuit.pdf}
+\includegraphics[width=1.1\linewidth]{acdc_converter.pdf}
 \caption{Analysed circuit}
 \label{fig:circuit}
 \end{figure}
-
-\begin{table}[h]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value [A or V or $\Omega$ or S]} \\ \hline
-    \input{Res}
-  \end{tabular}
-  \caption{Values given in document datagen(python)}
-  \label{tab:Res}
-\end{table}

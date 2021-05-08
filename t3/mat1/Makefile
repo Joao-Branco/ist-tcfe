@@ -12,6 +12,6 @@ octave_1.log: oct1.m
 
 clean:
 	@rm -f octave_1.log octave-workspace *.eps *~
-	@rm -rf *.tex
+	@rm -rf *.tex 
 
 .PHONY: clean

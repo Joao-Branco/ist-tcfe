@@ -2,126 +2,62 @@
 \section{Simulation Analysis}
 \label{sec:simulation}
 
-\subsection{Operating Point Analysis}
-\label{sec:Operating}
-At the first step (Point 1), considering t<0, a DC circuit was obtained. The branch that contained the capacitor is in open circuit, so the current is zero. Making this approach was possible to determine the voltages in all nodes and the currents in all branches, that can be seen in Tables ~\ref{tab:op_volt1_tab} and ~\ref{tab:op_amp1_tab}.
+\subsection{AC/DC converter}
+\label{sec:AC/DC converter}
+
+At the beginning an AC/DC converter circuit was developed.The circuit used is in Figure~\ref{fig:circuit}. In Point 1, an AC/DC converter was simulated for 10 periods. The circuit as four types of components which are 2 resistances, 1 capacitor, 23 diodes and a transformer. 
+
+
+
+At the second step (Point 2 of simulation), the average voltage was measured  using 1000 points. In the table below (\ref{tab:op_MAXMIN_tab}) can be seen the values of the ripple, the maximum, the minimum and the average for the voltage.
+ 
+To accomplish next point (Point 3), the output voltage ripple was determined by subtracting the maximum and minimum values of the voltage. The values of the ripple are represented in table \ref{tab:op_MAXMIN_tab}. These value are represented by ymax-ymin.
 
 \begin{table}[h]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Node} & {\bf Voltage [V]} \\ \hline
-    \input{op_volt1_tab.tex}
+    {\bf Values of y} & {\bf Voltage [V]} \\ \hline
+    \input{op_MAXMIN_tab.tex}
   \end{tabular}
-  \caption{Initial Voltage at the nodes}
-  \label{tab:op_volt1_tab}
-\end{table}
-
-\begin{table}[h]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Branch} & {\bf Current [A]} \\ \hline
-    \input{op_amp1_tab.tex}
-  \end{tabular}
-  \caption{Initial currents in all branches}
-  \label{tab:op_amp1_tab}
-\end{table}
-
-
-\newpage
-At the second step (Point 2 of simulation), considering t=0, $V_s$(0)=0 and the capacitor is replaced by $V_x$ = V(6) - V(8). V(6) and V(8) were obtained through point 1. This procedure is necessary because $Req$ is needed to calculate the natural solution, and the only way  to do that is to use a voltage source instead of a capacitor.  
-Voltages at the nodes and currents at the brunches are presented respectively in Tables ~\ref{tab:op_volt2_tab} and ~\ref{tab:op_amp2_tab}. 
-
-\begin{table}[h]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Node} & {\bf Voltage [V]} \\ \hline
-    \input{op_volt2_tab.tex}
-  \end{tabular}
-  \caption{Voltage at the nodes with voltage source}
-  \label{tab:op_volt2_tab}
-\end{table}
-
-\begin{table}[h]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Branch} & {\bf Current [A]} \\ \hline
-    \input{op_amp2_tab.tex}
-  \end{tabular}
-  \caption{Currents in all branches with voltage source}
-  \label{tab:op_amp2_tab}
+  \caption{Voltage values}
+  \label{tab:op_MAXMIN_tab}
 \end{table}
 
 
 
 
-\newpage
-\subsection{Transient Analysis}
-
-To accomplish next point, using the transient analysis was possible to obtain $V_6$(t) between [0;20] (ms). In order to do this plot, natural response of the circuit was used considering boundary conditions in $V_6$ and $V_8$, that were obtain at \ref{sec:Operating}. This plot can be seen in Figure \ref{fig:trans1}.
+Next the voltages at Envelope Detector and Voltage Regulator circuits were plotted by using the corresponding node. Both of these plots can be seen in the figures below. (Figure \ref{fig:envelope} and Figure \ref{fig:voltageregulator}).
+Because the values of the resistors and the capacitor were chosen with the ideal values for our circuit it is difficult to notice the variation in the graph of Figure \ref{fig:envelope}.  
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.5\linewidth]{trans1.pdf}
-\caption{Transient Analysis between 0 and 20 ms}
-\label{fig:trans1}
+\includegraphics[width=0.5\linewidth]{envelope.pdf}
+\caption{Voltages at Envelope Detector}
+\label{fig:envelope}
 \end{figure}
 
-
-Next it was simulated the natural and forced response of $V_6$(t) by repeating the previous point but considering alternate current, $V_s$(t), with frequency f=1kHz.
-Figure \ref{fig:trans2} shows both responses - natural and forced.
-
 \begin{figure}[h] \centering
-\includegraphics[width=0.5\linewidth]{trans2.pdf}
-\caption{Transient Analysis of $V_s$ and $V_6$ between 0 and 20 ms}
-\label{fig:trans2}
+\includegraphics[width=0.4\linewidth]{voltageregulator.pdf}
+\caption{Voltages at Voltage Regulator}
+\label{fig:voltageregulator}
 \end{figure}
 
 
 \newpage
-\subsection{Frequency Analysis}
 
-\subsubsection{Magnitude and Phase Response - Bode Diagram}
 
-To accomplish this analysis, frequency response (magnitude and phase) at node 6 was simulated - $V_6$(f). With this response plots were created together with $V_s$(f).  Magnitude response is represented in Figure ~\ref{fig:acm} and frequency response in Figure ~\ref{fig:acp}.
+The final step of the simulation analyses was to find the difference between the voltage obtained and 12 Volts that was the desired value. The plot can be seen in Figure \ref{fig:ripple}.
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.5\linewidth]{acm.pdf}
-\caption{Magnitude diagram between 0.1 and $10^7$}
-\label{fig:acm}
-\end{figure}
-
-\begin{figure}[h] \centering
-\includegraphics[width=0.5\linewidth]{acp.pdf}
-\caption{Phase diagram between 0.1 and $10^7$}
-\label{fig:acp}
+\includegraphics[width=0.4\linewidth]{ripple.pdf}\caption{Output voltage ripple}
+\label{fig:ripple}
 \end{figure}
 
 
 
-When frequency goes to infinity, impedance of the capacitor tends to zero (short circuit). So, if impedance tends to zero, resistance tends to zero, and therefore there is not voltage drop and $V_c$ tends to zero. That's the reason of the negative slope  of the magnitude.
+
+In the plot is possible to recognise that initially this difference is almost -12 V because the voltage obtained starts in zero and stabilises at 12 V. For these reason, the difference as time goes by tends to zero.
 
 
 
 
-
-
-
-
-\newpage
-\section{Results Analysis}
-\label{sec:resultsanalysis}
-
-Comparing the results in all points:
-
-Analysing initial values, theoretical analysis ~\ref{tab:oct2_tab} and simulation ~\ref{tab:op_volt1_tab} converge perfectly (5 decimal place).
-
-When the capacitor was substituted by a voltage source with the same voltage drop, the both results to node 6 are the same (8.74800 V) and the currents at R5 and $V_x$ (simulation) and $I_x$ (theoretical) - -0.00278897 A. 
-
-In transient analysis (natural, forced and the combination of both), it is possible to observe that the graphics between 0 and 20 ms have the same plot in both analyses. 
-
-In figures 5 (theoretical) and 9 (simulation) and it can be observe that $V_s$ and $V_6$ are in phases opposition, how it was expected from the theoretical knowledge.
-
-In the last point that were approached in this laboratory report, the frequency analysis, we can observe that the results are similarities and the functions in order to frequency has the same behaviour.
