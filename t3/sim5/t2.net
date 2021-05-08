@@ -7,8 +7,6 @@
 
 ******************************************
 * input voltage source
-
-
 vS 22 GND 0 sin(0 230 50)
 RS 22 23 2000M
 F1 GND 23 E1 0.73896
@@ -21,32 +19,31 @@ D1 1 2 Default
 D2 3 2 Default
 D3 GND 1 Default
 D4 GND 3 Default
-D6 4 5 Default
-D7 5 6 Default
-D8 6 7 Default
-D9 7 8 Default
-D10 8 9 Default
-D11 9 10 Default
-D12 10 11 Default
-D13 11 12 Default
-D14 12 13 Default
-D15 13 14 Default
-D16 14 15 Default
-D17 15 16 Default
-D18 16 17 Default
-D19 17 18 Default
-D20 18 19 Default
-D21 19 20 Default
-D22 20 21 Default
-D23 21 GND Default
+*D6 4 5 Default
+*D7 5 6 Default
+*D8 6 7 Default
+*D9 7 8 Default
+*D10 8 9 Default
+*D11 9 10 Default
+*D12 10 11 Default
+*D13 11 12 Default
+*D14 12 13 Default
+*D15 13 14 Default
+*D16 14 15 Default
+*D17 15 16 Default
+*D18 16 17 Default
+*D19 17 18 Default
+*D20 18 19 Default
+*D21 19 20 Default
+*D22 20 21 Default
+*D23 21 GND Default
 
 
 
 
-R1 2 GND 300k
-C1 2 GND 150u
-R3 2 4 100k
-
+*R1 2 GND 300k
+*C1 2 GND 150u
+*R3 2 4 100k
 
 
 .model Default D
@@ -67,31 +64,19 @@ set color5=rgb:3/8/0
 set color6=rgb:4/0/0
 ******************************************
 * analise no tempo
-tran 1e-5 240e-3
+tran 1e-5 100m
 * tran 1e-5 10e-3
 
-*analise maximos e minimos
-*ripple
-
-meas tran ymax MAX v(4) from=10e-3 to=240e-3 
-meas tran ymin MIN v(4) from=10e-3 to=240e-3 
-meas tran yavg AVG v(4) from=10e-3 to=240e-3 
-
-
+*plot   v(2) 
+meas tran yavg AVG v(2) from=10e-3 to=100m
 echo "********************************************"
 echo  "MAX and MIN"
 echo "********************************************"
-echo  "op_MAXMIN_TAB"
-print ymax-ymin
-print ymax
-print ymin
+echo  "op_avg_TAB"
 print yavg
-echo  "op_MAXMIN_END"
-
-
+echo  "op_avg_END"
+******************************************
+*hardcopy vospice100.ps  v(2) 
+* hardcopy vospice400.ps  v(4)
 
 .endc
-
-.endc
-
-
