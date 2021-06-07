@@ -92,27 +92,27 @@ set color5=rgb:3/8/0
 set color6=rgb:4/0/0
 
 * time analysis
-tran 1e-5 1e-2
-plot v(out)
-hardcopy vo1.ps v(out)
-echo vo1_FIG
+*tran 1e-5 1e-2
+*plot v(out)
+*hardcopy vo1.ps v(out)
+*echo vo1_FIG
 
 
 * frequency analysis
 ac dec 10 10 100MEG
 plot vdb(out)
 plot vp(out)
-hardcopy vo1db.ps vdb(out)
-echo vo1db_FIG
+hardcopy ampop_db.ps vdb(out)
+echo ampop_db_FIG
 set units=degrees
-hardcopy vo1f.ps vp(out)
-echo vo1f_FIG
+hardcopy ampop_f.ps vp(out)
+echo ampop_f_FIG
 
-meas ac central_gain FIND vm(out) at=1000
-meas ac central_gaindb FIND vdb(out) at=1000 
-let f3db = central_gaindb-3
-meas ac feqlow WHEN vm(out)=f3db from=10 to=100MEG RISE=1
-meas ac feqhigh WHEN vdb(out)=f3db from=10 to=100MEG FALL=1
+*meas ac central_gain FIND vm(out) at=1000
+*meas ac central_gaindb FIND vdb(out) at=1000 
+*let f3db = central_gaindb-3
+*meas ac feqlow WHEN vm(out)=f3db from=10 to=100MEG RISE=1
+*meas ac feqhigh WHEN vdb(out)=f3db from=10 to=100MEG FALL=1
  
 
 *input impedance in kohm

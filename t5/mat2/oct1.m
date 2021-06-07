@@ -35,5 +35,5 @@ semilogx(f, Tf_fas,"-;Vi/Vo;");
 grid on;
 
 
-print (qr, "bodemag.eps", "-depsc");
-print (qe, "bodepha.eps", "-depsc");
+print (qr, "non_idealbode_db.eps", "-depsc");
+print (qe, "non_idealbode_f.eps", "-depsc");

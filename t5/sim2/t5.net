@@ -92,38 +92,40 @@ set color5=rgb:3/8/0
 set color6=rgb:4/0/0
 
 * time analysis
-tran 1e-5 1e-2
-plot v(out)
-hardcopy vo1.ps v(out)
-echo vo1_FIG
+*tran 1e-5 1e-2
+*plot v(out)
+*hardcopy vo1.ps v(out)
+*echo vo1_FIG
 
 
 * frequency analysis
 ac dec 10 10 100MEG
-plot vdb(out)
-plot vp(out)
-hardcopy vo1db.ps vdb(out)
-echo vo1db_FIG
-set units=degrees
-hardcopy vo1f.ps vp(out)
-echo vo1f_FIG
+*plot vdb(out)
+*plot vp(out)
+*hardcopy vo1db.ps vdb(out)
+*echo vo1db_FIG
+*set units=degrees
+*hardcopy vo1f.ps vp(out)
+*echo vo1f_FIG
 
-meas ac central_gain FIND vm(out) at=1000
-meas ac central_gaindb FIND vdb(out) at=1000 
-let f3db = central_gaindb-3
-meas ac feqlow WHEN vm(out)=f3db from=10 to=100MEG RISE=1
-meas ac feqhigh WHEN vdb(out)=f3db from=10 to=100MEG FALL=1
+*meas ac central_gain FIND vm(out) at=1000
+*meas ac central_gaindb FIND vdb(out) at=1000 
+*let f3db = central_gaindb-3
+*meas ac feqlow WHEN vm(out)=f3db from=10 to=100MEG RISE=1
+*meas ac feqhigh WHEN vdb(out)=f3db from=10 to=100MEG FALL=1
  
 
 *input impedance in kohm
 plot abs(v(no_in)-v(inv_in)/Vamp#branch)
-let impedance_in = (v(no_in)-v(inv_in)/Vamp#branch)
+let impedance_in = abs(v(no_in)-v(inv_in)/Vamp#branch)
+hardcopy vimpedance_in.ps abs(v(no_in)-v(inv_in)/Vamp#branch)
+echo vimpedance_in_FIG
 meas ac imp_input FIND impedance_in at=1000
 
 *need a different setup to measure output impedance
-plot abs(v(out_op)/Vout#branch)
-let impedance_out = (v(out_op)/Vout#branch)
-meas ac imp_output FIND impedance_out at=1000
+*plot abs(v(out_op)/Vout#branch)
+*let impedance_out = abs(v(out_op)/Vout#branch)
+*meas ac imp_output FIND impedance_out at=1000
 
 .endc 
 
