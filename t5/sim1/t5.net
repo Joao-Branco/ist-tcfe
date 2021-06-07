@@ -52,36 +52,69 @@
 Vcc vcc 0 5.0
 Vee vee 0 -5.0
 Vin in 0 0 ac 1.0 sin(0 10m 1k)
+Vamp out_ap out 0
 
-X1 0 inv_in vcc vee out uA741
+X1 no_in inv_in vcc vee out_ap uA741
 
-R1 in inv_in 1000
-R2 inv_in out 10000
+C1 in no_in 330n
+
+R1 0 no_in 1k
+R3 0 inv_in 1k
+R4 inv_in out 100k
+*R2 out_op out 1k
+
+*R1 0 1 1k
+*C1 1 inv_in 220n
+*R2 inv_in out 100k
+*C2 inv_in out 1u
 
 * load
-RL out 0 8
+*RL out 0 8
 
 .op
 .end
 
 .control
 
+
 print all
+
+*makes plots in color
+set hcopypscolor=0
+set color0=white
+set color1=black
+set color2=red
+set color3=blue
+set color4=violet
+set color5=rgb:3/8/0
+set color6=rgb:4/0/0
 
 * time analysis
 tran 1e-5 1e-2
 plot v(out)
 hardcopy vo1.ps v(out)
+echo vo1_FIG
 
 
 * frequency analysis
 ac dec 10 10 100MEG
 plot vdb(out)
 plot vp(out)
-hardcopy vo1f.ps vdb(out)
+hardcopy vo1db.ps vdb(out)
+echo vo1db_FIG
+set units=degrees
+hardcopy vo1f.ps vp(out)
+echo vo1f_FIG
+
+meas ac central_gain FIND vm(out) at=1000
+meas ac central_gaindb FIND vdb(out) at=1000 
+let f3db = central_gaindb-3
+meas ac feqlow WHEN vm(out)=f3db from=10 to=100MEG RISE=1
+meas ac feqhigh WHEN vdb(out)=f3db from=10 to=100MEG FALL=1
+ 
 
 *input impedance in kohm
-*print v(in)[40]/R1[i]/1000
+*print v(on_in)/C1[i]/1000
 
 *need a different setup to measure output impedance
 
