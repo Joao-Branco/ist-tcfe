@@ -51,17 +51,19 @@
 
 Vcc vcc 0 5.0
 Vee vee 0 -5.0
-Vin in 0 0 ac 1.0 sin(0 10m 1k)
-
+Vin no_in 0 0 ac 1.0 sin(0 10m 1k)
+*Vamp in no_in 0
+*Vout out out_op 0
 
 X1 no_in inv_in vcc vee out uA741
 
-C1 in no_in 330n
+*C1 in 20 330n
 
-R1 0 no_in 1k
-R3 0 inv_in 1k
-R4 inv_in out 100k
-*R2 0 out 1k
+*R1 0 20 1k
+*R3 0 inv_in 1k
+*R4 inv_in out 100k
+*R2 out_op out 1k
+
 
 *R1 0 1 1k
 *C1 1 inv_in 220n
@@ -69,7 +71,7 @@ R4 inv_in out 100k
 *C2 inv_in out 1u
 
 * load
-*RL out 0 8
+*RL out 0 10e26
 
 .op
 .end
