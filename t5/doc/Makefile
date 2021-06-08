@@ -12,11 +12,17 @@ all: $(FILE).pdf
 	evince $< &
 
 $(FILE).pdf: $(wildcard *.tex) $(LODFIGS)
-	cp -f ../mat/*.eps .
-	cp -f ../sim/*.eps .
+	cp -f ../mat1/*.eps .
+	cp -f ../mat2/*.eps .
+	cp -f ../sim1/*.pdf .
+	cp -f ../sim2/*.pdf .
+	cp -f ../sim3/*.pdf .
+	cp -f ../sim4/*.pdf .	
 	pdflatex  $(FILE).tex
 	pdflatex  $(FILE).tex
 	pdflatex  $(FILE).tex
+
+	
 
 
 #convert libreoffice draw figures to pdf
