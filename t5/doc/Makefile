@@ -17,7 +17,8 @@ $(FILE).pdf: $(wildcard *.tex) $(LODFIGS)
 	cp -f ../sim1/*.pdf .
 	cp -f ../sim2/*.pdf .
 	cp -f ../sim3/*.pdf .
-	cp -f ../sim4/*.pdf .	
+	cp -f ../sim4/*.pdf .
+	cp -f ../*.pdf .	
 	pdflatex  $(FILE).tex
 	pdflatex  $(FILE).tex
 	pdflatex  $(FILE).tex

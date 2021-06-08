@@ -57,7 +57,7 @@ Vout out out_op 0
 
 X1 no_in inv_in vcc vee out_op uA741
 
-C1 in 20 330n
+C1 in 20 1.5u
 
 R1 0 20 1k
 R3 0 inv_in 1k
@@ -116,9 +116,9 @@ ac dec 10 10 100MEG
  
 
 *input impedance in kohm
-plot abs(v(no_in)-v(inv_in)/Vamp#branch)
-let impedance_in = abs(v(no_in)-v(inv_in)/Vamp#branch)
-hardcopy vimpedance_in.ps abs(v(no_in)-v(inv_in)/Vamp#branch)
+plot abs((v(no_in)-v(inv_in))/Vamp#branch)
+let impedance_in = abs((v(no_in)-v(inv_in))/Vamp#branch)
+hardcopy vimpedance_in.ps abs((v(no_in)-v(inv_in))/Vamp#branch)
 echo vimpedance_in_FIG
 meas ac imp_input FIND impedance_in at=1000
 

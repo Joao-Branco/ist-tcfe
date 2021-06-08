@@ -2,21 +2,24 @@
 \label{sec:introduction}
 
 % state the learning objective 
-The objective of this laboratory assignment is to study a circuit containing a
-sinusoidal voltage source $V_I$ connected to a resistor $R$ and a capacitor $C$
-in series. The circuit can be seen if Figure~\ref{fig:rc}.
+The objective of this laboratory assignment is to project a Band-Pass filter, centred at 1KHz and with 40dB gain, that receives an alternating current (AC) with 0.01V and 1KHz. The goal was to find the best value for the figure of merit of the circuit.
 
-\lipsum[1-1]
-
-In Section~\ref{sec:analysis}, a theoretical analysis of the circuit is
-presented. In Section~\ref{sec:simulation}, the circuit is analysed by
-simulation, and the results are compared to the theoretical results obtained in
-Section~\ref{sec:analysis}. The conclusions of this study are outlined in
+In Section~\ref{sec:simulation}, the circuit is analysed by simulation using \textit{Ngspice}. In Section~\ref{sec:analysis}, a theoretical analysis of the Band-Pass is presented using the tool \textit{Octave}. In Section~\ref{sec:resultsanalysis} the results obtained in the theoretical analysis are compared to the simulation results obtained in Section~\ref{sec:simulation}. The conclusions of this study are outlined in
 Section~\ref{sec:conclusion}.
 
+The following image shows the analysed circuit.
+
 \begin{figure}[h] \centering
-\includegraphics[width=0.4\linewidth]{rc.pdf}
-\caption{Voltage driven serial RC circuit.}
-\label{fig:rc}
+  \includegraphics[width=0.8\linewidth]{Bandpass.pdf}
+    \caption{Analysed Circuit}
+     \label{fig:circuit}
 \end{figure}
 
+The OpAmp that was used in the analysed circuit has the characteristics of an OpAmp A741.  
+
+%INSERIR FIGURA CERTA
+%\begin{figure}[h] \centering
+%\includegraphics[width=1.1\linewidth]{}
+%\caption{Analysed circuit}
+%\label{fig:circuit}
+%\end{figure}

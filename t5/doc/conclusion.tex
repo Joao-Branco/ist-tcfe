@@ -1,14 +1,25 @@
+\newpage
 \section{Conclusion}
 \label{sec:conclusion}
 
-In this laboratory assignment the objective of analysing an RC circuit has been
-achieved. Static, time and frequency analyses have been performed both
-theoretically using the Octave maths tool and by circuit simulation using the
-Ngspice tool. The simulation results matched the theoretical results
-precisely. The reason for this perfect match is the fact that this is a
-straightforward circuit containing only linear components, so the theoretical
-and simulation models cannot differ. For more complex components, the
-theoretical and simulation models could differ but this is not the case in this
-work.
+In this laboratory assignment the objective of project a Band-Pass filter, centered at 1KHz and with 40dB gain, with acceptable and real merit was achieved.
 
-\lipsum[1-1]
+First of all, the used circuit had an high-pass filter, an OpAmp and a low-pass filter. The results obtained were not what was expected, because came to the conclusion that the OpAmp was not ideal. Hereupon, the OpAmp was simulated to determined their transfer fuction. 
+
+After doing this, it was noticed that the OpAmp has a function of a low-pass filter, so the low-pass filter was removed. 
+
+In theoretical terms, the input impedance would have an infinite value and the output impedance would have a value of zero, considering an ideal OpAmp. However, in practical terms this does not happen. Normally, the input impedance varies between 1 and 10 M$\Omega$ and the output impedance between 10 and 100 $\Omega$. Based on simulation, is possible to observe that the values are between the expected gamma.     
+
+
+The merit obtained, using the formula at \ref{eq:merit}, is:
+
+\begin{equation}
+    M = 2.408741713 * 10^{-6}
+    \label{eq:meritf}
+\end{equation}
+
+The goal was not to obtain a perfect model because the merit M depends on the cost of the elements used. As it was not necessary to include a low-pass filter, the cost reduced because less components were used and in a practical way did not damage the main goal. 
+In this way, it is possible to conclude that there is no perfect model, and the values for merit M in an iterative way. 
+
+The simulation results matched the theoretical results, as it was possible to verify with both.  
+

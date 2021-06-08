@@ -1,87 +1,124 @@
 \section{Simulation Analysis}
 \label{sec:simulation}
 
-\subsection{Operating Point Analysis}
+\textit{Ngspice} does not allow the use of capacitors in parallel and in series so in order to use the values of the capacitors that are given in utterance and to achieve 330 $\mu$F, finding the equivalent capacitor was necessary. For that each of the three capacitors used in the calculation of the equivalent capacitor have the value of 220 $\mu$F.
 
-Table~\ref{tab:op} shows the simulated operating point results for the circuit
-under analysis. Compared to the theoretical analysis results, one notices the
-following differences: describe and explain the differences.
+The following equation shows the calculation of the equivalent capacitor.
+
+\begin{equation}
+    C_{eq}= \frac{1}{C_{1}}+\frac{1}{C_{2}+C_{3}} 
+\label{eq:vin}
+\end{equation} 
+
+\subsection{Frequency Response}
+\label{sec:Frequency Response}
+
+In this section, the circuit in analysis was developed in \textit{Ngspice}. The first goal, was to plot gain and phase frequency response analysis, as it can be seen in Figures \ref{fig:gfr} and \ref{fig:pfr}.
+
+\begin{figure}[h]
+  \centering
+  \begin{minipage}[b]{0.36\textwidth}
+    \includegraphics[width=1\textwidth]{Vo1db.pdf}
+    \caption{Gain in Frequency Response.}
+    \label{fig:gfr}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.36\textwidth}
+    \includegraphics[width=1\textwidth]{Vo1f.pdf}
+    \caption{Phase in Frequency Response.}
+    \label{fig:pfr}
+  \end{minipage}
+\end{figure}
+
+\newpage
+From the plot, it can be mentioned that the maximum value for the gain in 1KHz happens for almost 40dB, as required. 
+
+The values obtained for low frequency, high frequency and the gain at 1KHz were:
 
 \begin{table}[h]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
-    \input{../sim/op_tab}
-  \end{tabular}
-  \caption{Operating point. A variable preceded by @ is of type {\em current}
-    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
-    Volt.}
-  \label{tab:op}
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\multicolumn{1}{|c|}{} & Value         \\ \hline
+Low Frequency          & 105.0228 (Hz) \\ \hline
+High Frequency         & 10117.16 (Hz) \\ \hline
+Gain                   & 99.87576     \\ \hline
+Gain (dB)              & 39.98920 (dB)  \\ \hline
+\end{tabular}
+\caption{Obtained values from \textit{Ngspice}}
 \end{table}
 
-\lipsum[1-1]
 
+\subsection{Transient Analysis at 1KHz}
 
-\subsection{Transient Analysis}
+To accomplish the Transient analysis at 1KHz, an AC current with the expression \ref{eq:vin} was used:
 
-Figure~\ref{fig:trans} shows the simulated transient analysis results for the
-circuit under analysis. Compared to the theoretical analysis results, one
-notices the following differences: describe and explain the differences.
-
-\begin{figure}[h] \centering
-\includegraphics[width=0.6\linewidth]{trans.eps}
-\caption{Transient output voltage}
-\label{fig:trans}
-\end{figure}
-
-\lipsum[1-1]
-
-
-
-\subsection{Frequency Analysis}
-
-\subsubsection{Magnitude Response}
-
-Figure~\ref{fig:acm} shows the magnitude of the frequency response for the
-circuit under analysis. Compared to the theoretical analysis results, one
-notices the following differences: describe and explain the differences.
+\begin{equation}
+    v_{in}(t) = 0.01 * sin ( 2\pi * 1000 * t)   [V]
+\label{eq:vin}
+\end{equation} 
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.6\linewidth]{acm.eps}
-\caption{Magnitude response}
-\label{fig:acm}
+\includegraphics[width=0.5\linewidth]{Vo1.pdf}
+\caption{AC Voltage in time domain.}
+\label{fig:envelope}
 \end{figure}
+\newpage
+The previous image (\ref{fig:envelope}) represents the plot of $v_{in}(t)$.
 
-\lipsum[1-1]
+\subsection{Input and Output Impedance Simulation}
 
-\subsubsection{Phase Response}
-
-Figure~\ref{fig:acp} shows the magnitude of the frequency response for the
-circuit under analysis. Compared to the theoretical analysis results, one
-notices the following differences: describe and explain the differences.
+In order to obtain the input impedance, a resistance with a high value (infinite) was inserted in parallel with the circuit in analysis. Through out this simulation was possible to determine the voltage and current at the positive node of the OpAmp. With that information, the transfer function was found and the value of the input impedance at 1KHz was calculated. The variation of the input impedance with frequency is shown in Figure \ref{fig:vimpedance_in}.
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.6\linewidth]{acp.eps}
-\caption{Phase response}
-\label{fig:acp}
+\includegraphics[width=0.5\linewidth]{vimpedance_in.pdf}
+\caption{Variation of input impedance with frequency.}
+\label{fig:vimpedance_in}
 \end{figure}
 
-\lipsum[1-1]
+\newpage
 
-\subsubsection{Input Impedance}
+\begin{table}[h]
+ \centering
+  \begin{tabular}{|l|c|}
+   \hline
+   \multicolumn{1}{|c|}{} & Module ($\Omega$) \\ \hline
+    Input Impedance        & 996289.2                        \\ \hline
+    Output Impedance       & 5.038123                       \\ \hline
+\end{tabular}
+\end{table}
 
-Figure~\ref{fig:zim} shows the magnitude of the frequency response for the
-circuit under analysis. Compared to the theoretical analysis results, one
-notices the following differences: describe and explain the differences.
+\vspace{0.5cm}
+To obtain the output impedance, the $v_{in}$ voltage was removed and added a $v_{out}$. This was done in order not to have current at the entrance of the circuit and to have it at the way out. Through this, it was possible to do all the calculations. The variation of the output impedance with frequency is presented in Figure \ref{fig:vimpedance_out}.
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.6\linewidth]{zim.eps}
-\caption{Input impedance}
-\label{fig:zim}
+  \includegraphics[width=0.5\linewidth]{vimpedance_out.pdf}
+    \caption{Variation of output impedance with frequency.}
+     \label{fig:vimpedance_out}
 \end{figure}
 
-\lipsum[1-1]
+\newpage
+\subsection{Operational Amplifier Simulation}
+
+It was necessary to simulate the Bode Diagrams of the OpAmp without any components, as can be seen in figures \ref{fig:ampop_db} and \ref{fig:ampop_f}. With this step, it is possible do find the transfer function of the non-ideal OpAmp, wich is needed at section \ref{sec:analysis}. By analysing the graph was possible do see were the poles of the transfer function were ($s=10^4$ and $s=10^6$).
 
 
+\begin{figure}[h]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=1\textwidth]{ampop_db.pdf}
+    \caption{Module of the transfer function in frequency response.}
+    \label{fig:ampop_db}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=1\textwidth]{ampop_f.pdf}
+    \caption{Phase of the transfer function in frequency response.}
+    \label{fig:ampop_f}
+  \end{minipage}
+\end{figure}
 
+\begin{equation}
+    T(s)=\frac{1*10^6}{(s+1*10^4)(s+1*10^6)}
+    \label{eq:tfsim}
+\end{equation}

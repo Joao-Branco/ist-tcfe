@@ -56,7 +56,7 @@ Vin in 0 0 ac 1.0 sin(0 10m 1k)
 
 X1 no_in inv_in vcc vee out uA741
 
-C1 in no_in 330n
+C1 in no_in 1.5u
 
 R1 0 no_in 1k
 R3 0 inv_in 1k
@@ -64,7 +64,7 @@ R4 inv_in out 100k
 *R2 0 out 1k
 
 *R1 0 1 1k
-*C1 1 inv_in 220n
+*C1 1 inv_in 660n
 *R2 inv_in out 100k
 *C2 inv_in out 1u
 
@@ -108,9 +108,8 @@ echo vo1f_FIG
 
 meas ac central_gain FIND vm(out) at=1000
 meas ac central_gaindb FIND vdb(out) at=1000 
-let f3db = central_gaindb-3
-meas ac feqlow WHEN vm(out)=f3db from=10 to=100MEG RISE=1
-meas ac feqhigh WHEN vdb(out)=f3db from=10 to=100MEG FALL=1
+meas ac feqlow WHEN vdb(out)=3.698920e+01 from=10 to=100MEG RISE=1
+meas ac feqhigh WHEN vdb(out)=3.698920e+01 from=10 to=100MEG FALL=1
  
 
 *input impedance in kohm

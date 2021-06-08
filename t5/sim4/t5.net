@@ -57,7 +57,7 @@ Vin no_in 0 0 ac 1.0 sin(0 10m 1k)
 
 X1 no_in inv_in vcc vee out uA741
 
-*C1 in 20 330n
+*C1 in 20 1.5u
 
 *R1 0 20 1k
 *R3 0 inv_in 1k

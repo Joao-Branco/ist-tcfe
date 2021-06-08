@@ -57,7 +57,7 @@ Vout out out_op 0
 
 X1 no_in inv_in vcc vee out_op uA741
 
-C1 0 no_in 330n
+C1 0 no_in 1.5u
 
 R1 0 no_in 1k
 R3 0 inv_in 1k
